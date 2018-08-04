@@ -1,0 +1,8 @@
+postage.settings:
+  path: '/admin/config/services/postage'
+  defaults:
+    _form: '\Drupal\postage\Form\PostageSettingsForm'
+    _title: 'Postage Mailer Settings'
+  requirements:
+    _permission: 'administer site configuration'
+

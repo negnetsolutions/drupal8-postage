@@ -1,0 +1,22 @@
+<?php
+
+use Drupal\Core\Mail\MailManagerInterface;
+use Drupal\Component\Utility\SafeMarkup;
+use Drupal\Component\Utility\Html;
+
+/**
+ * Implements hook_mail()
+ */
+function postage_mail($key, &$message, $params)
+{
+  $options = array(
+    'langcode' => $message['langcode'],
+  );
+  switch ($key) {
+      case 'test':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = t('Postage Test Mail');
+      $message['body'][] = Html::escape('Your site is properly configured to send emails using Postage.');
+      break;
+  }
+}

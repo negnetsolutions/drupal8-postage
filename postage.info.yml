@@ -1,0 +1,4 @@
+name: Postage
+type: module
+description: 'Adds postage mailer support'
+core: '8.x'
