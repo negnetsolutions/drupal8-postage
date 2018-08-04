@@ -1,3 +1,5 @@
 {
-  "name": "negnet/postage"
+  "name": "negnet/postage",
+  "type": "drupal-module",
+  "require": {}
 }
