@@ -1,5 +1,7 @@
 {
   "name": "negnet/postage",
+  "description": "Integration with Negnet Solutions Postage API",
   "type": "drupal-module",
+  "license": "GPL-2.0+",
   "require": {}
 }
