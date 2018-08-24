@@ -5,4 +5,3 @@ postage.settings:
     _title: 'Postage Mailer Settings'
   requirements:
     _permission: 'administer site configuration'
-
