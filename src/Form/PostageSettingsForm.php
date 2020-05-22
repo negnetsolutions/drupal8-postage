@@ -77,7 +77,7 @@ class PostageSettingsForm extends ConfigFormBase {
       $mail->set('interface.default', 'postage_mailer')->save();
     }
     else {
-      drupal_set_message('postage is installed but <em>disabled</em>, also the current SMTP library is not set: <em>sending via default PHP mail class</em>.', 'warning', TRUE);
+      \Drupal::messenger()->addWarning('postage is installed but <em>disabled</em>, also the current SMTP library is not set: <em>sending via default PHP mail class</em>.', TRUE);
       $mail->set('interface.default', 'php_mail')->save();
     }
 
@@ -107,13 +107,13 @@ class PostageSettingsForm extends ConfigFormBase {
     $result = $mailManager->mail('postage', 'test', $email, $langcode, [], NULL, TRUE);
     if ($result['result'] != TRUE) {
       $message = t('There was a problem sending your email notification to @email.', ['@email' => $to]);
-      drupal_set_message($message, 'error');
+      \Drupal::messenger()->addError($message);
       \Drupal::logger('postage')->error($message);
       return;
     }
 
     $message = t('A test email has been sent to @email', ['@email' => $email]);
-    drupal_set_message($message);
+    \Drupal::messenger()->addStatus($message);
     \Drupal::logger('postage')->notice($message);
   }
 

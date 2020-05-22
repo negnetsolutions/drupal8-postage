@@ -79,7 +79,7 @@ class PostageMailer implements MailInterface {
     }
     catch (Exception $e) {
       \Drupal::logger('postage')->error('Exception message: ' . $e->getMessage());
-      drupal_set_message('Mail sending error: ' . $e->getMessage(), 'error');
+      \Drupal::messenger()->addError('Mail sending error: ' . $e->getMessage(), TRUE);
     }
 
     return FALSE;
