@@ -2,3 +2,4 @@ name: Postage
 type: module
 description: 'Adds postage mailer support'
 core: '8.x'
+core_version_requirement: ^8 || ^9
