@@ -190,16 +190,16 @@ class Postage {
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
     if ($curlError !== '') {
-      throw new Exception($curlError);
+      throw new \Exception($curlError);
     }
 
     if (!$this->isTwoHundred($httpCode)) {
       if ($httpCode == 422) {
         $return = json_decode($return);
-        throw new Exception($return->Message, $return->ErrorCode);
+        throw new \Exception($return->Message, $return->ErrorCode);
       }
       else {
-        throw new Exception("Error while mailing. Mailer returned HTTP code {$httpCode} with message \"{$return}\"", $httpCode);
+        throw new \Exception("Error while mailing. Mailer returned HTTP code {$httpCode} with message \"{$return}\"", $httpCode);
       }
     }
 
@@ -207,7 +207,7 @@ class Postage {
     $mail_status = json_decode($return, TRUE);
 
     if ($mail_status['Message'] == 'ERROR') {
-      throw new Exception($mail_status['ErrorCode']);
+      throw new \Exception($mail_status['ErrorCode']);
     }
 
     if (($this->debugMode & self::DEBUG_VERBOSE) === self::DEBUG_VERBOSE) {
