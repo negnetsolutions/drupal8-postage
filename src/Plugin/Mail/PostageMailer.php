@@ -54,7 +54,7 @@ class PostageMailer implements MailInterface {
     if (is_array($message['body'])) {
       $body = '';
       foreach ($message['body'] as $m) {
-        $body .= $m;
+        $body .= $m . "\n";
       }
     }
     else {
