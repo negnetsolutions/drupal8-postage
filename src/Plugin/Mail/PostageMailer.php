@@ -30,8 +30,23 @@ class PostageMailer implements MailInterface {
     $mail = new postage();
     $config = \Drupal::config('postage.settings');
 
+    // Set api_key.
+    $api_key = $config->get('api_key');
+
+    // Check for dev filter.
+    $filter = $config->get('filter_enabled') ?? FALSE;
+    $filterDomain = $config->get('filter_domain');
+
+    if ($filter && $filterDomain) {
+      $host = \Drupal::request()->getHost();
+      if ($host == $filterDomain) {
+        // Set to dev api key.
+        $api_key = '8663433-3923-9572-1305-524689115863';
+      }
+    }
+
     // Set postage's api key.
-    $mail->setKey($config->get('api_key'));
+    $mail->setKey($api_key);
 
     // Parse 'From' e-mail address.
     $address = $this->parseAddress($message['from']);

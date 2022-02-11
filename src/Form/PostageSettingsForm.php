@@ -49,6 +49,25 @@ class PostageSettingsForm extends ConfigFormBase {
       '#description' => t('You postage API key similar to : 8663433-3923-9572-1305-524689115863 (taken from the API page)'),
     ];
 
+    $form['debug'] = [
+      '#type' => 'details',
+      '#title' => t('Debug Options'),
+    ];
+
+    $form['debug']['filter_enabled'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Enable Dev Domain Filter?'),
+      '#default_value' => $config->get('filter_enabled'),
+    ];
+
+    $form['debug']['filter_domain'] = [
+      '#type' => 'textfield',
+      '#title' => t('Filter Domains'),
+      '#default_value' => $config->get('filter_domain'),
+      '#description' => t('Enter a development domain where default api key should be used.'),
+      '#required' => FALSE,
+    ];
+
     $form['test'] = [
       '#type' => 'fieldset',
       '#title' => t('Test Settings'),
@@ -86,6 +105,8 @@ class PostageSettingsForm extends ConfigFormBase {
       // Set the submitted configuration setting.
       ->set('enabled', $form_state->getValue('postage_enabled'))
       ->set('api_key', $form_state->getValue('api_key'))
+      ->set('filter_enabled', $form_state->getValue('filter_enabled'))
+      ->set('filter_domain', $form_state->getValue('filter_domain'))
       ->save();
 
     $test_address = $form_state->getValue('test_address');
