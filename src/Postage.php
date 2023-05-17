@@ -10,7 +10,7 @@ class Postage {
   private $message = [];
   private $apiKey = '8663433-3923-9572-1305-524689115863';
   private $debugMode = self::DEBUG_OFF;
-  private $serverAddress = 'http://postage.negnetsolutions.com/compose';
+  private $serverAddress = 'https://postage.negnetsolutions.com/compose';
 
   const DEBUG_OFF = 0;
   const DEBUG_VERBOSE = 1;
